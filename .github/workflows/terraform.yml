@@ -5,7 +5,7 @@ on:
   - push
 jobs:
   terraform:
-    name: 'Terraform init'
+    name: 'Terraform Init'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -17,17 +17,11 @@ jobs:
           tf_actions_subcommand: "init"
         env:
           GITHUB_TOKEN: ${{ secrets.HUB_TOKEN }}
-  
-  terraformvalidate:
-    name: 'Terraform validate'
+  shelljob:
+    name: "Demo"
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout'
-        uses: actions/checkout@master
-      - name: 'Terraform Format'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.12.18
-          tf_actions_subcommand: "validate"
-        env:
-          GITHUB_TOKEN: ${{ secrets.HUB_TOKEN }}
+      - name: "Shell Demo"
+        run : curl www.google.com
+        shell: bash
+
